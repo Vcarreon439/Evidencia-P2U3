@@ -10,6 +10,8 @@ namespace Evidencia_P2U3
         Caballo[] caballos = new Caballo[4];
         FabPuntero Factory = new FabPuntero();
         Puntero[] punteros = new Puntero[4];
+
+        //Parte de hilos
         Thread[] hilos = new Thread[4];
         delegate bool Delegado(Caballo[] caballos1);
 
