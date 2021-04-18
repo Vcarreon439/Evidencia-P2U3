@@ -2,23 +2,25 @@
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Threading;
 
 namespace Evidencia_P2U3
 {
     public class Caballo
     {
-        private static int PosicionInicio;
-        private static int LargoCarrera;
+        private int PosicionInicio = 12;
+        private int LargoCarrera = 802 - 120;
         public PictureBox ImagenCaballo = null;
         public int posicion = 0;
         public static Random RdmNum = new Random();
 
-        public static int PosicionInicio1 { get => PosicionInicio; set => PosicionInicio = value; }
-        public static int LargoCarrera1 { get => LargoCarrera; set => LargoCarrera = value; }
+        public int PosicionInicio1 { get => PosicionInicio; set => PosicionInicio = value; }
+        public int LargoCarrera1 { get => LargoCarrera; set => LargoCarrera = value; }
 
-        public static bool Correr(Caballo obj) 
+        public bool Correr(Caballo obj)
         {
-            int distancia = RdmNum.Next(2,6);
+            int distancia = RdmNum.Next(2, 6);
             if (obj.ImagenCaballo != null)
             { obj.MoverCaballo(distancia); }
 
@@ -30,18 +32,21 @@ namespace Evidencia_P2U3
             return false;
         }
 
-        public void TomarPosicionIncial() 
+        public void TomarPosicionIncial()
         {
             MoverCaballo(-posicion);
             posicion = 0;
+
         }
 
-        public void MoverCaballo(int distancia) 
+        public void MoverCaballo(int distancia)
         {
             Point p = ImagenCaballo.Location;
             p.X += distancia;
-            ImagenCaballo.Location = p;
+            if (ImagenCaballo.InvokeRequired)
+            {
+                ImagenCaballo.Location = p;
+            }
         }
-
     }
 }

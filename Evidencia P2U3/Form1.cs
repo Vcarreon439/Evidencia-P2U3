@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,23 +13,18 @@ namespace Evidencia_P2U3
         Caballo[] caballos = new Caballo[4];
         FabPuntero Factory = new FabPuntero();
         Puntero[] punteros = new Puntero[4];
+        List<Thread> hilos = new List<Thread>();
 
-        //Parte de hilos
-        Thread[] hilos = new Thread[4];
-        delegate bool Delegado(Caballo[] caballos1);
 
         public Form1()
         {
             InitializeComponent();
             PrepararCarrera();
+            CheckForIllegalCrossThreadCalls = false;
         }
-        
+
         private void PrepararCarrera()
         {
-
-            Caballo.PosicionInicio1 = pctCaballo1.Right;
-            Caballo.LargoCarrera1 = racetrack.Size.Width; //Estableciendo lo largo de la carrera
-
             caballos[0] = new Caballo() { ImagenCaballo = pctCaballo1 };
             caballos[1] = new Caballo() { ImagenCaballo = pctCaballo2 };
             caballos[2] = new Caballo() { ImagenCaballo = pctCaballo3 };
@@ -41,6 +39,14 @@ namespace Evidencia_P2U3
             {
                 puntero.ActualizarLabel();
             }
+        }
+
+        private void CrearHilos() 
+        {
+            hilos.Add(new Thread(() => Correr(0)));
+            hilos.Add(new Thread(() => Correr(1)));
+            hilos.Add(new Thread(() => Correr(2)));
+            hilos.Add(new Thread(() => Correr(3)));
         }
 
         private void CambiarLabelApuestaMax(int Dinero)
@@ -68,38 +74,47 @@ namespace Evidencia_P2U3
             CambiarLabelApuestaMax(punteros[3].Dinero);
         }
 
-        private void btnCarrera_Click(object sender, EventArgs e)
+        public bool Correr(int numCaballo)
         {
-            bool NoWinner = true;
-            int caballoGanador;
-            btnCarrera.Enabled = false; //DesactivarDesactivar el boton de carrera
-            while (NoWinner)
-            { // loop hasta tenehasta tener un ganador
-                Application.DoEvents();
-                for (int i = 0; i < caballos.Length; i++)
+            while (true)
+            {
+
+                if (caballos[numCaballo].Correr(caballos[numCaballo]))
                 {
-                    if (Caballo.Correr(caballos[i]))
+                    foreach (var hilo in hilos.Where(hilo => hilo.ManagedThreadId != Thread.CurrentThread.ManagedThreadId))
                     {
-                        caballoGanador = i + 1;
-                        NoWinner = false;
-                        MessageBox.Show($"Tenemos un ganador - Horse #{caballoGanador}");
-                        foreach (Puntero puntero in punteros)
-                        {
-                            if (puntero.apuesta != null)
-                            {
-                                puntero.Juntar(caballoGanador); //Le damos el doble de cantidad a quien gano la apuesta
-                                puntero.apuesta = null;
-                                puntero.ActualizarLabel();
-                            }
-                        }
-                        foreach (Caballo caballo in caballos)
-                        {
-                            caballo.TomarPosicionIncial();
-                        }
-                        break;
+                        hilo.Abort();
                     }
+                    /**/
+                    MessageBox.Show($" Gano el caballo numero {numCaballo + 1} ");
+                    foreach (Puntero puntero in punteros)
+                    {
+                        if (puntero.apuesta != null)
+                        {
+                            puntero.Juntar(numCaballo); //Le damos el doble de cantidad a quien gano la apuesta
+                            puntero.apuesta = null;
+                            puntero.ActualizarLabel();
+                        }
+                    }
+                    foreach (Caballo caballo in caballos)
+                    {
+                        caballo.TomarPosicionIncial();
+                    }
+                    return true;
                 }
             }
+
+        }
+
+        private void btnCarrera_Click(object sender, EventArgs e)
+        {
+            CrearHilos();
+
+            btnCarrera.Enabled = false; //DesactivarDesactivar el boton de carrera
+
+            hilos[0].Start(); hilos[1].Start(); hilos[2].Start(); hilos[3].Start();
+            hilos[0].Join(); hilos[1].Join(); hilos[2].Join(); hilos[3].Join();
+
             if (punteros[0].atrapado && punteros[1].atrapado && punteros[2].atrapado && punteros[3].atrapado)
             {
                 string mensaje = "Quieres Juegar de Nuevo?";
@@ -115,7 +130,28 @@ namespace Evidencia_P2U3
                     Close();
                 }
             }
+
+
+            hilos.Clear();
+            ReiniciarCaballos();
+
             btnCarrera.Enabled = true; //Activar de nuevo el boton
+        }
+
+        private void ReiniciarCaballos() 
+        {
+            Point[] p = new Point[]
+            {
+                new Point(12, pctCaballo1.Location.Y),
+                new Point(12, pctCaballo2.Location.Y),
+                new Point(12, pctCaballo3.Location.Y),
+                new Point(12, pctCaballo4.Location.Y),
+            };
+
+            pctCaballo1.Location = p[0];
+            pctCaballo2.Location = p[1];
+            pctCaballo3.Location = p[2];
+            pctCaballo4.Location = p[3];
         }
 
         // Establecer la apuesta para cada puntero y actualizando sus labels
