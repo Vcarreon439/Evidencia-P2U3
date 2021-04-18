@@ -29,11 +29,6 @@ namespace Evidencia_P2U3
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pctCaballo1 = new System.Windows.Forms.PictureBox();
-            this.pctCaballo2 = new System.Windows.Forms.PictureBox();
-            this.pctCaballo3 = new System.Windows.Forms.PictureBox();
-            this.pctCaballo4 = new System.Windows.Forms.PictureBox();
             this.lblApuestaMax = new System.Windows.Forms.Label();
             this.radioJessy = new System.Windows.Forms.RadioButton();
             this.radioAntonio = new System.Windows.Forms.RadioButton();
@@ -52,58 +47,22 @@ namespace Evidencia_P2U3
             this.ElPepeApuesta = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.racetrack = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo4)).BeginInit();
+            this.pctCaballo4 = new System.Windows.Forms.PictureBox();
+            this.pctCaballo3 = new System.Windows.Forms.PictureBox();
+            this.pctCaballo2 = new System.Windows.Forms.PictureBox();
+            this.pctCaballo1 = new System.Windows.Forms.PictureBox();
+            this.racetrack = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadApuesta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCaballo)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racetrack)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pctCaballo1
-            // 
-            this.pctCaballo1.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo1.Location = new System.Drawing.Point(12, 12);
-            this.pctCaballo1.Name = "pctCaballo1";
-            this.pctCaballo1.Size = new System.Drawing.Size(100, 75);
-            this.pctCaballo1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctCaballo1.TabIndex = 0;
-            this.pctCaballo1.TabStop = false;
-            // 
-            // pctCaballo2
-            // 
-            this.pctCaballo2.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo2.Location = new System.Drawing.Point(12, 93);
-            this.pctCaballo2.Name = "pctCaballo2";
-            this.pctCaballo2.Size = new System.Drawing.Size(100, 75);
-            this.pctCaballo2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctCaballo2.TabIndex = 1;
-            this.pctCaballo2.TabStop = false;
-            // 
-            // pctCaballo3
-            // 
-            this.pctCaballo3.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo3.Location = new System.Drawing.Point(12, 174);
-            this.pctCaballo3.Name = "pctCaballo3";
-            this.pctCaballo3.Size = new System.Drawing.Size(100, 75);
-            this.pctCaballo3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctCaballo3.TabIndex = 2;
-            this.pctCaballo3.TabStop = false;
-            // 
-            // pctCaballo4
-            // 
-            this.pctCaballo4.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo4.Location = new System.Drawing.Point(12, 255);
-            this.pctCaballo4.Name = "pctCaballo4";
-            this.pctCaballo4.Size = new System.Drawing.Size(100, 75);
-            this.pctCaballo4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctCaballo4.TabIndex = 3;
-            this.pctCaballo4.TabStop = false;
             // 
             // lblApuestaMax
             // 
@@ -269,6 +228,8 @@ namespace Evidencia_P2U3
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 361);
             this.tabControl1.Name = "tabControl1";
@@ -302,10 +263,64 @@ namespace Evidencia_P2U3
             this.tabPage1.Text = "Apuestas";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Green;
+            this.panel1.Location = new System.Drawing.Point(-1, 393);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(802, 173);
+            this.panel1.TabIndex = 7;
+            // 
+            // pctCaballo4
+            // 
+            this.pctCaballo4.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
+            this.pctCaballo4.Location = new System.Drawing.Point(12, 255);
+            this.pctCaballo4.Name = "pctCaballo4";
+            this.pctCaballo4.Size = new System.Drawing.Size(100, 75);
+            this.pctCaballo4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctCaballo4.TabIndex = 3;
+            this.pctCaballo4.TabStop = false;
+            // 
+            // pctCaballo3
+            // 
+            this.pctCaballo3.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
+            this.pctCaballo3.Location = new System.Drawing.Point(12, 174);
+            this.pctCaballo3.Name = "pctCaballo3";
+            this.pctCaballo3.Size = new System.Drawing.Size(100, 75);
+            this.pctCaballo3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctCaballo3.TabIndex = 2;
+            this.pctCaballo3.TabStop = false;
+            // 
+            // pctCaballo2
+            // 
+            this.pctCaballo2.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
+            this.pctCaballo2.Location = new System.Drawing.Point(12, 93);
+            this.pctCaballo2.Name = "pctCaballo2";
+            this.pctCaballo2.Size = new System.Drawing.Size(100, 75);
+            this.pctCaballo2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctCaballo2.TabIndex = 1;
+            this.pctCaballo2.TabStop = false;
+            // 
+            // pctCaballo1
+            // 
+            this.pctCaballo1.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
+            this.pctCaballo1.Location = new System.Drawing.Point(12, 12);
+            this.pctCaballo1.Name = "pctCaballo1";
+            this.pctCaballo1.Size = new System.Drawing.Size(100, 75);
+            this.pctCaballo1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctCaballo1.TabIndex = 0;
+            this.pctCaballo1.TabStop = false;
+            // 
             // racetrack
             // 
+            this.racetrack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.racetrack.BackColor = System.Drawing.SystemColors.Control;
-            this.racetrack.Image = ((System.Drawing.Image)(resources.GetObject("racetrack.Image")));
+            this.racetrack.Image = global::Evidencia_P2U3.Properties.Resources.aaaa;
             this.racetrack.Location = new System.Drawing.Point(-1, -13);
             this.racetrack.Name = "racetrack";
             this.racetrack.Size = new System.Drawing.Size(802, 428);
@@ -313,18 +328,11 @@ namespace Evidencia_P2U3
             this.racetrack.TabIndex = 6;
             this.racetrack.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Green;
-            this.panel1.Location = new System.Drawing.Point(-1, 393);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(802, 173);
-            this.panel1.TabIndex = 7;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 563);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pctCaballo4);
@@ -333,17 +341,18 @@ namespace Evidencia_P2U3
             this.Controls.Add(this.pctCaballo1);
             this.Controls.Add(this.racetrack);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Carrera de Caballos";
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadApuesta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCaballo)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctCaballo1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.racetrack)).EndInit();
             this.ResumeLayout(false);
 

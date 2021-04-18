@@ -63,6 +63,16 @@ namespace Evidencia_P2U3.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap aaaa {
+            get {
+                object obj = ResourceManager.GetObject("aaaa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap caballo_1 {
             get {
                 object obj = ResourceManager.GetObject("caballo_1", resourceCulture);
