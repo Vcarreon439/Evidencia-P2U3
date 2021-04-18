@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace Evidencia_P2U3
 {
-    class Caballo
+    public class Caballo
     {
         private static int PosicionInicio;
         private static int LargoCarrera;
-        public PictureBox ImagenCaballo;
+        public PictureBox ImagenCaballo = null;
         public int posicion = 0;
         public static Random RdmNum = new Random();
 
@@ -19,12 +19,13 @@ namespace Evidencia_P2U3
         public static bool Correr(Caballo obj) 
         {
             int distancia = RdmNum.Next(2,6);
-            if (obj.ImagenCaballo!=null)
-                obj.MoverCaballo(distancia);
+            if (obj.ImagenCaballo != null)
+            { obj.MoverCaballo(distancia); }
 
             obj.posicion += distancia;
-            if (obj.posicion>=(distancia-PosicionInicio))
-                return true;
+
+            if (obj.posicion >= (LargoCarrera1 - PosicionInicio1))
+            { return true; }
 
             return false;
         }

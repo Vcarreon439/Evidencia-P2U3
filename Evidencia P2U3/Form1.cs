@@ -8,137 +8,138 @@ namespace Evidencia_P2U3
     public partial class Form1 : Form
     {
         Caballo[] caballos = new Caballo[4];
-        FabPuntero fPunteros = new FabPuntero();
+        FabPuntero Factory = new FabPuntero();
         Puntero[] punteros = new Puntero[4];
-
-        private void PrepararCarrera()
-        {
-            Caballo.PosicionInicio1 = 0;
-            Caballo.LargoCarrera1 = this.Width-10;
-
-            caballos[0] = new Caballo() { ImagenCaballo = pctCaballo1 };
-            caballos[1] = new Caballo() { ImagenCaballo = pctCaballo2 };
-            caballos[2] = new Caballo() { ImagenCaballo = pctCaballo3 };
-            caballos[3] = new Caballo() { ImagenCaballo = pctCaballo4 };
-
-            punteros[0] = fPunteros.Obtener("Jessy", lblApuestaMax, JessyApuesta);
-            punteros[1] = fPunteros.Obtener("Antonio", lblApuestaMax, AntonioApuesta);
-            punteros[2] = fPunteros.Obtener("Megan", lblApuestaMax, MeganApuesta);
-            punteros[3] = fPunteros.Obtener("ElPepe", lblApuestaMax, ElPepeApuesta);
-
-            foreach (Puntero item in punteros)
-                item.ActualizarLabel(); 
-
-        }
+        Thread[] hilos = new Thread[4];
+        delegate bool Delegado(Caballo[] caballos1);
 
         public Form1()
         {
             InitializeComponent();
             PrepararCarrera();
         }
-        private void radioJessy_CheckedChanged(object sender, EventArgs e)
+        
+        private void PrepararCarrera()
         {
-            establecerApuestaMax(punteros[0].Dinero);
+
+            Caballo.PosicionInicio1 = pctCaballo1.Right;
+            Caballo.LargoCarrera1 = racetrack.Size.Width; //Estableciendo lo largo de la carrera
+
+            caballos[0] = new Caballo() { ImagenCaballo = pctCaballo1 };
+            caballos[1] = new Caballo() { ImagenCaballo = pctCaballo2 };
+            caballos[2] = new Caballo() { ImagenCaballo = pctCaballo3 };
+            caballos[3] = new Caballo() { ImagenCaballo = pctCaballo4 };
+
+            punteros[0] = Factory.Obtener("Jessy", lblApuestaMax, JessyApuesta);
+            punteros[1] = Factory.Obtener("Antonio", lblApuestaMax, AntonioApuesta);
+            punteros[2] = Factory.Obtener("Megan", lblApuestaMax, MeganApuesta);
+            punteros[3] = Factory.Obtener("ElPepe", lblApuestaMax, ElPepeApuesta);
+
+            foreach (Puntero puntero in punteros)
+            {
+                puntero.ActualizarLabel();
+            }
         }
 
-        private void establecerApuestaMax(int Dinero)
+        private void CambiarLabelApuestaMax(int Dinero)
         {
-            lblApuestaMax.Text = string.Format($"Apuesta Máxima {Dinero}");
+            lblApuestaMax.Text = string.Format($"Apuesta Maxima: ${Dinero}");
+        }
+
+        private void radioJessy_CheckedChanged(object sender, EventArgs e)
+        {
+            CambiarLabelApuestaMax(punteros[0].Dinero);
         }
 
         private void radioAntonio_CheckedChanged(object sender, EventArgs e)
         {
-            establecerApuestaMax(punteros[1].Dinero);
+            CambiarLabelApuestaMax(punteros[1].Dinero);
         }
 
         private void radioMegan_CheckedChanged(object sender, EventArgs e)
         {
-            establecerApuestaMax(punteros[2].Dinero);
+            CambiarLabelApuestaMax(punteros[2].Dinero);
         }
 
         private void radioElPepe_CheckedChanged(object sender, EventArgs e)
         {
-            establecerApuestaMax(punteros[3].Dinero);
-        }
-
-        private void btnApuesta_Click(object sender, EventArgs e)
-        {
-            int NumPuntero = 0;
-
-            if (radioJessy.Checked)
-                NumPuntero = 0; 
-
-            if (radioAntonio.Checked)
-                NumPuntero = 1; 
-
-            if (radioMegan.Checked)
-                NumPuntero = 2;
-
-            if (radioElPepe.Checked)
-                NumPuntero = 3;
-
-            punteros[NumPuntero].Apostar((int)CantidadApuesta.Value, (int)numCaballo.Value);
-            punteros[NumPuntero].ActualizarLabel();
+            CambiarLabelApuestaMax(punteros[3].Dinero);
         }
 
         private void btnCarrera_Click(object sender, EventArgs e)
         {
-            bool SnGanador = true;
-            int CaballoGanador;
-            btnCarrera.Enabled = false; //Desactiva el boton de carrera
-
-            while (SnGanador)
-            { 
+            bool NoWinner = true;
+            int caballoGanador;
+            btnCarrera.Enabled = false; //DesactivarDesactivar el boton de carrera
+            while (NoWinner)
+            { // loop hasta tenehasta tener un ganador
                 Application.DoEvents();
-
-                //Thread c1 = new Thread(() => Caballo.Correr(caballos[0]));
-                //Thread c2 = new Thread(() => Caballo.Correr(caballos[1]));
-                //Thread c3 = new Thread(() => Caballo.Correr(caballos[2]));
-                //Thread c4 = new Thread(() => Caballo.Correr(caballos[3]));
-
                 for (int i = 0; i < caballos.Length; i++)
                 {
                     if (Caballo.Correr(caballos[i]))
                     {
-                        CaballoGanador = i + 1;
-                        SnGanador = false;
-                        MessageBox.Show($"Tenemos un ganador - Caballo #{CaballoGanador}");
-                        foreach (Puntero punter in punteros)
+                        caballoGanador = i + 1;
+                        NoWinner = false;
+                        MessageBox.Show($"Tenemos un ganador - Horse #{caballoGanador}");
+                        foreach (Puntero puntero in punteros)
                         {
-                            if (punter.apuesta != null)
+                            if (puntero.apuesta != null)
                             {
-                                punter.Juntar(CaballoGanador); //Da el doble de cantidad a todos quienes ganaron la apuesta
-                                punter.apuesta = null;
-                                punter.ActualizarLabel();
+                                puntero.Juntar(caballoGanador); //Le damos el doble de cantidad a quien gano la apuesta
+                                puntero.apuesta = null;
+                                puntero.ActualizarLabel();
                             }
                         }
-
-                        foreach (Caballo horse in caballos)
+                        foreach (Caballo caballo in caballos)
                         {
-                            horse.TomarPosicionIncial();
+                            caballo.TomarPosicionIncial();
                         }
-
                         break;
                     }
                 }
             }
-            if (punteros[0].atrapado && punteros[1].atrapado && punteros[2].atrapado&& punteros[3].atrapado)
+            if (punteros[0].atrapado && punteros[1].atrapado && punteros[2].atrapado && punteros[3].atrapado)
             {
-                string mesaje = "Quieres volver a jugar?";
-                string titulo = "Fin del Juego";
-                MessageBoxButtons botones = MessageBoxButtons.YesNo;
-                DialogResult resultado = MessageBox.Show(mesaje, titulo, botones);
-
-                if (resultado==DialogResult.Yes)
+                string mensaje = "Quieres Juegar de Nuevo?";
+                string title = "GAME OVER!";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(mensaje, title, buttons);
+                if (result == DialogResult.Yes)
+                {
                     PrepararCarrera();
+                }
                 else
+                {
                     Close();
-
+                }
             }
-
-            btnCarrera.Enabled = true;
-
+            btnCarrera.Enabled = true; //Activar de nuevo el boton
         }
 
+        // Establecer la apuesta para cada puntero y actualizando sus labels
+        private void btnApuesta_Click(object sender, EventArgs e)
+        {
+            int PunterNum = 0;
+
+            if (radioJessy.Checked)
+            {
+                PunterNum = 0;
+            }
+            if (radioAntonio.Checked)
+            {
+                PunterNum = 1;
+            }
+            if (radioMegan.Checked)
+            {
+                PunterNum = 2;
+            }
+            if (radioElPepe.Checked)
+            {
+                PunterNum = 3;
+            }
+
+            punteros[PunterNum].Apostar((int)CantidadApuesta.Value, (int)numCaballo.Value);
+            punteros[PunterNum].ActualizarLabel();
+        }
     }
 }

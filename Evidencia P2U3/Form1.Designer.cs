@@ -70,7 +70,7 @@ namespace Evidencia_P2U3
             // pctCaballo1
             // 
             this.pctCaballo1.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo1.Location = new System.Drawing.Point(26, 225);
+            this.pctCaballo1.Location = new System.Drawing.Point(12, 12);
             this.pctCaballo1.Name = "pctCaballo1";
             this.pctCaballo1.Size = new System.Drawing.Size(100, 75);
             this.pctCaballo1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -80,7 +80,7 @@ namespace Evidencia_P2U3
             // pctCaballo2
             // 
             this.pctCaballo2.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo2.Location = new System.Drawing.Point(26, 306);
+            this.pctCaballo2.Location = new System.Drawing.Point(12, 93);
             this.pctCaballo2.Name = "pctCaballo2";
             this.pctCaballo2.Size = new System.Drawing.Size(100, 75);
             this.pctCaballo2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -90,7 +90,7 @@ namespace Evidencia_P2U3
             // pctCaballo3
             // 
             this.pctCaballo3.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo3.Location = new System.Drawing.Point(26, 387);
+            this.pctCaballo3.Location = new System.Drawing.Point(12, 174);
             this.pctCaballo3.Name = "pctCaballo3";
             this.pctCaballo3.Size = new System.Drawing.Size(100, 75);
             this.pctCaballo3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -100,7 +100,7 @@ namespace Evidencia_P2U3
             // pctCaballo4
             // 
             this.pctCaballo4.Image = global::Evidencia_P2U3.Properties.Resources.caballo_1;
-            this.pctCaballo4.Location = new System.Drawing.Point(26, 468);
+            this.pctCaballo4.Location = new System.Drawing.Point(12, 255);
             this.pctCaballo4.Name = "pctCaballo4";
             this.pctCaballo4.Size = new System.Drawing.Size(100, 75);
             this.pctCaballo4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -273,7 +273,7 @@ namespace Evidencia_P2U3
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 361);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 190);
@@ -329,11 +329,11 @@ namespace Evidencia_P2U3
             // 
             this.racetrack.BackColor = System.Drawing.SystemColors.Control;
             this.racetrack.Image = ((System.Drawing.Image)(resources.GetObject("racetrack.Image")));
-            this.racetrack.Location = new System.Drawing.Point(-1, 208);
+            this.racetrack.Location = new System.Drawing.Point(-1, -13);
             this.racetrack.Name = "racetrack";
-            this.racetrack.Size = new System.Drawing.Size(802, 343);
+            this.racetrack.Size = new System.Drawing.Size(802, 428);
             this.racetrack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.racetrack.TabIndex = 7;
+            this.racetrack.TabIndex = 6;
             this.racetrack.TabStop = false;
             // 
             // Form1
