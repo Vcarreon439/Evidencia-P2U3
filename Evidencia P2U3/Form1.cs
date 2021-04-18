@@ -85,7 +85,6 @@ namespace Evidencia_P2U3
                     {
                         hilo.Abort();
                     }
-                    /**/
                     MessageBox.Show($" Gano el caballo numero {numCaballo + 1} ");
                     foreach (Puntero puntero in punteros)
                     {
@@ -108,34 +107,37 @@ namespace Evidencia_P2U3
 
         private void btnCarrera_Click(object sender, EventArgs e)
         {
-            CrearHilos();
-
-            btnCarrera.Enabled = false; //DesactivarDesactivar el boton de carrera
-
-            hilos[0].Start(); hilos[1].Start(); hilos[2].Start(); hilos[3].Start();
-            hilos[0].Join(); hilos[1].Join(); hilos[2].Join(); hilos[3].Join();
-
-            if (punteros[0].atrapado && punteros[1].atrapado && punteros[2].atrapado && punteros[3].atrapado)
+            try
             {
-                string mensaje = "Quieres Juegar de Nuevo?";
-                string title = "GAME OVER!";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                DialogResult result = MessageBox.Show(mensaje, title, buttons);
-                if (result == DialogResult.Yes)
+                CrearHilos();
+
+                btnCarrera.Enabled = false; //DesactivarDesactivar el boton de carrera
+
+                hilos[0].Start(); hilos[1].Start(); hilos[2].Start(); hilos[3].Start();
+                hilos[0].Join(); hilos[1].Join(); hilos[2].Join(); hilos[3].Join();
+
+                if (punteros[0].atrapado && punteros[1].atrapado && punteros[2].atrapado && punteros[3].atrapado)
                 {
-                    PrepararCarrera();
+                    string mensaje = "Quieres Juegar de Nuevo?";
+                    string title = "GAME OVER!";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result = MessageBox.Show(mensaje, title, buttons);
+                
+                    if (result == DialogResult.Yes)
+                        PrepararCarrera();
+                    else
+                        Close();
                 }
-                else
-                {
-                    Close();
-                }
+
+                hilos.Clear();
+                ReiniciarCaballos();
+
+                btnCarrera.Enabled = true; //Activar de nuevo el boton
             }
-
-
-            hilos.Clear();
-            ReiniciarCaballos();
-
-            btnCarrera.Enabled = true; //Activar de nuevo el boton
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ReiniciarCaballos() 
@@ -157,27 +159,35 @@ namespace Evidencia_P2U3
         // Establecer la apuesta para cada puntero y actualizando sus labels
         private void btnApuesta_Click(object sender, EventArgs e)
         {
-            int PunterNum = 0;
+            try
+            {
+                int PunterNum = 0;
 
-            if (radioJessy.Checked)
-            {
-                PunterNum = 0;
+                if (radioJessy.Checked)
+                {
+                    PunterNum = 0;
+                }
+                if (radioAntonio.Checked)
+                {
+                    PunterNum = 1;
+                }
+                if (radioMegan.Checked)
+                {
+                    PunterNum = 2;
+                }
+                if (radioElPepe.Checked)
+                {
+                    PunterNum = 3;
+                }
+
+                punteros[PunterNum].Apostar((int)CantidadApuesta.Value, (int)numCaballo.Value);
+                punteros[PunterNum].ActualizarLabel();
             }
-            if (radioAntonio.Checked)
+            catch (Exception ex)
             {
-                PunterNum = 1;
-            }
-            if (radioMegan.Checked)
-            {
-                PunterNum = 2;
-            }
-            if (radioElPepe.Checked)
-            {
-                PunterNum = 3;
+                MessageBox.Show(ex.Message);
             }
 
-            punteros[PunterNum].Apostar((int)CantidadApuesta.Value, (int)numCaballo.Value);
-            punteros[PunterNum].ActualizarLabel();
         }
     }
 }
